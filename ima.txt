@@ -1,0 +1,33 @@
+  private void Inicio_Load(object sender, EventArgs e)
+        {
+            tusuarioid.Text = Convert.ToString(CacheInicioSesion.user);
+            templeadoid.Text = Convert.ToString(CacheInicioSesion.empleadoid);
+            tnombre.Text = CacheInicioSesion.nombre;
+            tapellido.Text = CacheInicioSesion.apellido;
+            temail.Text = CacheInicioSesion.email;
+            ttelefono.Text = CacheInicioSesion.telefono;
+            tdireccion.Text = CacheInicioSesion.direccion;
+
+
+            try
+            {
+                System.IO.MemoryStream ms = new System.IO.MemoryStream(CacheInicioSesion.imagen);
+                imagen.Image = Image.FromStream(ms);
+            }
+            catch
+            {
+            //    imagen.Image = imagen.Image;
+            }
+
+        }
+
+        private void bcargarimg_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog fo = new OpenFileDialog();
+            DialogResult rs = fo.ShowDialog();
+            if (rs == DialogResult.OK)
+            {
+                imagen.Image = Image.FromFile(fo.FileName);
+                bguardar2.Visible = true;
+            }
+        }
